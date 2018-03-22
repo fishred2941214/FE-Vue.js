@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <title>West2Online 2017 JavaScript Task Vue.js</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  
+</head>
+  <body>
+      <div id="app">
+        <h1>TO DO LIST</h1>
+        <input type = "text" id="input" v-model ="inputValue" placeholder="I want to do..." v-on:keyup.enter = "addnew" /> <button  v-on:click = "addnew">add</button>
+        <ul>
+            <li v-for="todo in todos" v-bind:class="{finished:todo.isFinished}"/>
+             {{ todo.lable }}<button  v-on:click="del">del</button><button v-on:click = "todo.isFinished = !todo.isFinished">finish</button>
+            </li>
+          </ul>
+
+        </div>
+        
+        <script>
+        new Vue({
+          el: '#app',
+          data:{
+            todos:[],
+            inputValue:'',
+            seen : false, 
+            newInput : ''
+          },
+          methods:{
+            addnew:function(){
+              this.todos.push({
+                lable:this.inputValue,
+                isFinished:false
+              });
+              this.inputVaule= '0' ; 
+            },
+           del:function(){
+             this.todos.pop();
+           }
+          }
+        })
+        </script>
+        <style>
+          .finished {
+           text-decoration: line-through;
+          }
+          #app{
+            width: 500px;
+            height: 640px;
+            padding: 5px;
+            margin: 0 auto;
+            text-align: center;
+          }
+        </style>
+  </body>
+</html>
